@@ -18,9 +18,9 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'firstname',
         'lastname',
+        'middlename',
         'email',
         'role',
         'password',
@@ -60,6 +60,17 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the user's full name attribute.
+     *
+     * @return string
+     */
+    public function getNameAttribute(): string
+    {
+        $parts = array_filter([$this->firstname, $this->middlename, $this->lastname]);
+        return implode(' ', $parts) ?: '';
     }
 
     public function postedJobs()

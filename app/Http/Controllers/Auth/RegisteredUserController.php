@@ -82,7 +82,6 @@ class RegisteredUserController extends Controller
             }
 
             $user = User::create([
-                'name' => $fullName,
                 'firstname' => $validated['first_name'],
                 'lastname' => $validated['last_name'],
                 'middlename' => $validated['middle_name'] ?? null,
